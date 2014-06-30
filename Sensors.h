@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreMotion/CoreMotion.h>
 
-@interface Sensors : NSObject
-
+@interface Sensors : NSObject <UIAccelerometerDelegate>{
+CMMotionManager *motionManager;
+NSOperationQueue *operationQueue;
+NSTimer *timer;
+NSTimer *UItimer; //optional
+}
+- (void)initialize;
+- (id)initWithData:(NSNumber*)requestedFreq;
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
+- (int)calcLine:(int)lineNum:(float)accelx:(float)accely:(float)accelz;
 @end
