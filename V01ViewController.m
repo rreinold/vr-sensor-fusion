@@ -43,17 +43,7 @@ double frameNum=0;
     
     //[self.vidPlayer play];
     NSLog(@"Playing video at %@",filepath);
-    //remove
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
         
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-    
     
     
 }

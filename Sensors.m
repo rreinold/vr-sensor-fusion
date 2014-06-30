@@ -22,14 +22,14 @@
     //======Accelerometer Setup======
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
     accel.delegate = self;
-    accel.updateInterval = 1.0f/60.0f; //Hz
+    accel.updateInterval = 1.0f; //Hz //60 to 1
     //====End Accelerometer Setup=======
     //=====Start Gyro Setup=============
     //Moving average setup
     motionManager = [[CMMotionManager alloc]init];
-    motionManager.deviceMotionUpdateInterval = 1/60;
+    motionManager.deviceMotionUpdateInterval = 1;//60 to 1
     [motionManager startDeviceMotionUpdates];
-    //timer = [NSTimer scheduledTimerWithTimeInterval:1/60 target:self selector:@selector(read) userInfo:nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(read) userInfo:nil repeats:YES];//60 to 1
     //if gyro hardware exists
     if(motionManager.isGyroAvailable){
         if(motionManager.isGyroActive){
@@ -44,6 +44,19 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"NO GYRO" message:@"GET A GYRO" delegate:self cancelButtonTitle:@"DONE" otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+- (void)read{
+    CMAttitude *attitude;
+    CMDeviceMotion *motion = motionManager.deviceMotion;
+    attitude = motion.attitude;
+    
+    float storeYaw;
+    NSLog(@"Yaw is %f",attitude.yaw);
+
+    //float storeYaw = attitude.yaw;
+
+    
 }
 
 
