@@ -11,9 +11,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
-    return YES;
+{    
+    // Add the tab bar controller's current view as a subview of the window
+
+    
+    // Restore saved media from the defaults system.
+    	
+	return YES;
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
