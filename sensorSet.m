@@ -45,9 +45,39 @@ float tesla;
 - (float) getGyroZ{return gyroz;}
 - (float) getTesla{return tesla;}
 
-- (void) print{
+- (void) printRaw{
     //NSLog(@"X: %f Y: %f Z: %f X: %f Y: %f Z: %f T: %f",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
     printf("%f,%f,%f,%f,%f,%f,%f\n",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
+}
+
+- (void) printNormalized{
+    
+    //create ints to truncate decimals
+    int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal;
+    accelxNormal = (int)(accelx+8)*1000/16;
+    accelyNormal = (int)(accely+8)*1000/16;
+    accelzNormal = (int)(accelz+8)*1000/16;
+    gyroxNormal = (int)(gyrox+3.14)*1000/6.28;
+    gyroyNormal = (int)(gyroy+3.14)*1000/6.28;
+    gyrozNormal = (int)(gyroz+3.14)*1000/6.28;
+    teslaNormal = (int)(tesla)*1000/359;
+    //error checking
+    if(accelxNormal > 1000){accelxNormal=1000;}
+    else if(accelxNormal < 0){accelxNormal=0;}
+    if(accelyNormal > 1000){accelyNormal=1000;}
+    else if(accelyNormal < 0){accelyNormal=0;}
+    if(accelzNormal > 1000){accelzNormal=1000;}
+    else if(accelzNormal < 0){accelzNormal=0;}
+    if(gyroxNormal > 1000){gyroxNormal=1000;}
+    else if(gyroxNormal < 0){gyroxNormal=0;}
+    if(gyroyNormal > 1000){gyroyNormal=1000;}
+    else if(gyroyNormal < 0){gyroyNormal=0;}
+    if(gyrozNormal > 1000){gyrozNormal=1000;}
+    else if(gyrozNormal < 0){gyrozNormal=0;}
+    if(teslaNormal > 1000){teslaNormal=1000;}
+    else if(teslaNormal < 0){teslaNormal;}
+    
+    printf("%x,%x,%x,%x,%x,%x,%x\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
 }
 
 @end

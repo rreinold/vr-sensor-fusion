@@ -11,15 +11,22 @@
 
 @implementation Model{
 
-NSMutableArray *vaprSet;
+
 }
 
 @synthesize activeFrameNumber = _activeFrameNumber;// Optional for Xcode 4.4+
 @synthesize activeFrame = _activeFrame;
 #define NS(x) [NSNumber numberWithFloat:x]
+
+- (id)init:(Vapr*)VaprToSet{
+    self = [super init];
+    Vapr* current = VaprToSet;
+    return self;
+}
+
 - (NSNumber*)retrieveVapr:(NSNumber *)vaprID{
-    //instantiate array
-    vaprSet=[[NSMutableArray alloc] init];
+    
+    
 
 }
 - (NSNumber*)queryAccel:(NSNumber*)qAccelValue{}
@@ -28,13 +35,15 @@ NSMutableArray *vaprSet;
 
 - (NSNumber*)getFrameNumber{}
 - (void)pushFrame:(NSString*)toPush{
-    UIImage *image = [UIImage imageNamed: toPush];
-    NSString *newPhoto;
-        [vaprSet addObject:[[Vapr alloc] initWithData:image:NS(-1):NS(-1):NS(-1)]];
+
     
-    for (Vapr *thisVapr in vaprSet) {
-        //NSLog(@"hey display 0 to 22 please %f",[[thisVapr getFrameNum] floatValue]);
-    }
-    
+}
+
+- (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance{
+    int diff = queryValue-vaprValue;
+    if(abs(diff) <= tolerance){return 0;}
+    else if (diff >=0){return 1;}
+    else if (diff <0){return -1;}
+    else return -2;//TODO: need alternate void return value
 }
 @end

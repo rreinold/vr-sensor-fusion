@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <math.h>
 
 @interface Model : NSObject
 /*
@@ -24,6 +25,7 @@
 - (NSNumber*)queryAccel:(NSNumber *)qAccelValue;
 - (NSNumber*)queryGyro:(NSNumber *)qGyroValue;
 - (NSNumber*)queryMagneto:(NSNumber *)qMagnetoValue;
+- (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance;
 
 - (NSNumber*)getFrameNumber;
 

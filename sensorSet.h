@@ -10,7 +10,8 @@
 
 @interface sensorSet : NSObject
 - (id) init;
-- (void) print;
+- (void) printRaw;
+- (void) printNormalized;
 - (void) setAccelX:(float) toSet;
 - (void) setAccelY:(float) toSet;
 - (void) setAccelZ:(float) toSet;

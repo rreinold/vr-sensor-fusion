@@ -150,7 +150,7 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     [currentSet setAccelY:(acceleration.y)];
     [currentSet setAccelX:(acceleration.x)];
     [currentSet setAccelZ:(acceleration.z)];
-    [currentSet print];
+    [currentSet printNormalized];
     //int yValue = [self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)];
     //NSLog(@"Y:%i",yValue);
     //========>accelNow = yValue;
