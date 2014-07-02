@@ -7,7 +7,8 @@
 //
 
 #import "V01ViewController.h"
-
+#import "Sensors.h";
+#define NSCast(x) [NSNumber numberWithFloat:x]
 @interface V01ViewController ()
 
 @end
@@ -28,6 +29,10 @@ double frameNum=0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    Sensors *sense = [[Sensors alloc] initWithData:NSCast(60)] ;
+    
+    
 	NSString *filepath = [[NSBundle mainBundle] pathForResource:@"test6" ofType:@"mov"];
     NSURL *fileURL = [NSURL fileURLWithPath:filepath];
     vidPlayer = [[AVPlayer alloc] initWithURL:fileURL];
@@ -38,17 +43,7 @@ double frameNum=0;
     
     //[self.vidPlayer play];
     NSLog(@"Playing video at %@",filepath);
-    //remove
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
         
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-    
     
     
 }
