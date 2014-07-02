@@ -7,7 +7,7 @@
 //
 
 #import "V01ViewController.h"
-#import "Sensors.h";
+#import "Sensor.h";
 #define NSCast(x) [NSNumber numberWithFloat:x]
 @interface V01ViewController ()
 
@@ -30,7 +30,7 @@ double frameNum=0;
 {
     [super viewDidLoad];
     
-    Sensors *sense = [[Sensors alloc] initWithData:NSCast(60)] ;
+    Sensor *sense = [[Sensor alloc] initWithData:NSCast(60)] ;
     
     
 	NSString *filepath = [[NSBundle mainBundle] pathForResource:@"test6" ofType:@"mov"];
