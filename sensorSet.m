@@ -46,7 +46,8 @@ float tesla;
 - (float) getTesla{return tesla;}
 
 - (void) print{
-    NSLog(@"X: %f Y: %f Z: %f X: %f Y: %f Z: %f T: %f",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
+    //NSLog(@"X: %f Y: %f Z: %f X: %f Y: %f Z: %f T: %f",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
+    printf("%f,%f,%f,%f,%f,%f,%f\n",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
 }
 
 @end

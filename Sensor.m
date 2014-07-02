@@ -92,9 +92,9 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     
     //float storeYaw;
     //NSLog(@"Yaw is %f",attitude.yaw);
-    [currentSet setGyroX:(attitude.pitch)];
-    [currentSet setGyroX:(attitude.yaw)];
-    [currentSet setGyroX:(attitude.roll)];
+    [currentSet setGyroX:((float)attitude.pitch)];
+    [currentSet setGyroY:((float)attitude.yaw)];
+    [currentSet setGyroZ:((float)attitude.roll)];
     
 
     //float storeYaw = attitude.yaw;
@@ -146,7 +146,8 @@ sensorSet *currentSet;//TODO: Here or in a property above?
      */
     
     //obtain Y value and update Label
-    [currentSet setAccelY:([self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)])];
+    //[currentSet setAccelY:([self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)])];
+    [currentSet setAccelY:(acceleration.y)];
     [currentSet setAccelX:(acceleration.x)];
     [currentSet setAccelZ:(acceleration.z)];
     [currentSet print];
