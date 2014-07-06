@@ -18,7 +18,17 @@
 
 @implementation Sensor
 sensorSet *currentSet;//TODO: Here or in a property above?
-- (id)initWithData:(NSNumber*)requestedFreq{
+//TODO: Multiple inits
+- (id)init{
+    self = [super init];
+    //NSLog(@"Accelerometer Frequency: %@",requestedFreq);
+    [self initialize];
+    [self initTesla];
+    currentSet = [[sensorSet alloc] init];
+    return self;
+}
+
+- (id)initWithData:(int)requestedFreq{
     self = [super init];
     NSLog(@"Accelerometer Frequency: %@",requestedFreq);
     [self initialize];

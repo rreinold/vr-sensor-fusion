@@ -10,10 +10,16 @@
 #import "Vapr.h"
 
 @implementation Model
-
-- (id)init:(Vapr*)VaprToSet{
+- (id)init{
     self = [super init];
     Sensor* sense = [[Sensor alloc] init];
+    return self;
+    
+    
+}
+- (id)initWithVapr:(Vapr*)VaprToSet{
+    self = [super init];
+    //Sensor* sense = [[Sensor alloc] init];
     return self;
 
 }

@@ -17,8 +17,9 @@ NSOperationQueue *operationQueue;
 NSTimer *timer;
 NSTimer *UItimer; //optional
 }
+- (id)init;
 - (void)initialize;
-- (id)initWithData:(NSNumber*)requestedFreq;
+- (id)initWithData:(int)requestedFreq;
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 - (int)calcLine:(int)lineNum:(float)accelx:(float)accely:(float)accelz;
 - (void)read;

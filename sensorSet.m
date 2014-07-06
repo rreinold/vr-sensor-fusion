@@ -7,6 +7,7 @@
 //
 
 #import "sensorSet.h"
+#define scale 1000 //TODO: Implement this
 
 @implementation sensorSet
 float accelx;
@@ -54,13 +55,13 @@ float tesla;
     
     //create ints to truncate decimals
     int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal;
-    accelxNormal = (int)(accelx+8)*1000/16;
-    accelyNormal = (int)(accely+8)*1000/16;
-    accelzNormal = (int)(accelz+8)*1000/16;
-    gyroxNormal = (int)(gyrox+3.14)*1000/6.28;
-    gyroyNormal = (int)(gyroy+3.14)*1000/6.28;
-    gyrozNormal = (int)(gyroz+3.14)*1000/6.28;
-    teslaNormal = (int)(tesla)*1000/359;
+    accelxNormal = (int) ((accelx+8)*1000/16);
+    accelyNormal = (int) ((accely+8)*1000/16);
+    accelzNormal = (int) ((accelz+8)*1000/16);
+    gyroxNormal = (int) ((gyrox+3.14)*1000/6.28);
+    gyroyNormal = (int) ((gyroy+3.14)*1000/6.28);
+    gyrozNormal = (int) ((gyroz+3.14)*1000/6.28);
+    teslaNormal = (int) ((tesla)*1000/359);
     //error checking
     if(accelxNormal > 1000){accelxNormal=1000;}
     else if(accelxNormal < 0){accelxNormal=0;}
@@ -77,7 +78,7 @@ float tesla;
     if(teslaNormal > 1000){teslaNormal=1000;}
     else if(teslaNormal < 0){teslaNormal;}
     
-    printf("%x,%x,%x,%x,%x,%x,%x\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
+    printf("%u,%u,%u,%u,%u,%u,%u\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
 }
 
 @end

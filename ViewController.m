@@ -23,6 +23,12 @@
     
     //set up cornered, transparent border
     loginBorder.alpha = 0.5;
+    username.alpha=0.75;
+    password.alpha = 0.75;
+    password.borderStyle = UITextBorderStyleRoundedRect;
+    username.borderStyle = UITextBorderStyleRoundedRect;
+    //password.backgroundColor = [UIColor grayColor];
+    //password.backgroundColor = [UIColor grayColor];
     //loginBorder.layer.cornerRadius = 10.0;
     [self.loginBorder.layer setCornerRadius:5.0];
 }

@@ -13,8 +13,8 @@
 
 @interface Model : NSObject
 
-
-- (id)init:(Vapr*)VaprToSet;
+- (id)init;
+- (id)initWithVapr:(Vapr*)VaprToSet;
 - (int)queryFrameNum;
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance;
 
