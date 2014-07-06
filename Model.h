@@ -10,12 +10,13 @@
 #import <math.h>
 #import "Vapr.h"
 #import "Sensor.h"
+#import "sensorSet.h"
 
 @interface Model : NSObject
 
 - (id)init;
 - (id)initWithVapr:(Vapr*)VaprToSet;
-- (int)queryFrameNum;
+- (int)queryCurrentFrameNum;
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance;
 
 

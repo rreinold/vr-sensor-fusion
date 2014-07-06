@@ -43,9 +43,17 @@ double frameNum=0;
     
     //[self.vidPlayer play];
     NSLog(@"Playing video at %@",filepath);
-        
+    Vapr* currentVapr = [self createFakeVapr];
     
     
+}
+
+- (Vapr*)createFakeVapr{
+    Vapr* fakeVapr = [[Vapr alloc] init];
+    
+    //create NSMutableArray of fake values
+    
+    return fakeVapr;
 }
 
 - (IBAction)displayNextFrame:(id)sender{

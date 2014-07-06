@@ -112,6 +112,9 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     
 }
 
+- (sensorSet*)getSensorSet{
+    return currentSet;
+}
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
     

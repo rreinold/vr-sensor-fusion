@@ -4,29 +4,31 @@
 //
 //  Created by Robert Reinold on 5/28/14.
 //  Copyright (c) 2014 Robert Reinold. All rights reserved.
-//
+//TODO: 60Hz Timer: Update sensor values, and pull sensor data. Better off at 58Hz.
 
 #import "Model.h"
 #import "Vapr.h"
-
+#define TOLERANCE 10
 @implementation Model
+
+Sensor* sense;
+int CurrentFrameNum=0;
 - (id)init{
     self = [super init];
-    Sensor* sense = [[Sensor alloc] init];
+    sense = [[Sensor alloc] init];
     return self;
-    
-    
 }
 - (id)initWithVapr:(Vapr*)VaprToSet{
     self = [super init];
     //Sensor* sense = [[Sensor alloc] init];
     return self;
-
-}
-- (int)queryFrameNum{
-    //getSensorSet
-    //compareWithTolerance each sensor
     
+}
+- (int)queryCurrentFrameNum{
+    //getSensorSet
+    sensorSet* currentModelSensorSet = sense.getSensorSet;
+    
+    //compareWithTolerance each sensor
 }
 //include X sensors and parameter for it.
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance{
