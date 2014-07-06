@@ -9,36 +9,20 @@
 #import "Model.h"
 #import "Vapr.h"
 
-@implementation Model{
-
-
-}
-
-@synthesize activeFrameNumber = _activeFrameNumber;// Optional for Xcode 4.4+
-@synthesize activeFrame = _activeFrame;
-#define NS(x) [NSNumber numberWithFloat:x]
+@implementation Model
 
 - (id)init:(Vapr*)VaprToSet{
     self = [super init];
-    Vapr* current = VaprToSet;
+    Sensor* sense = [[Sensor alloc] init];
     return self;
-}
-
-- (NSNumber*)retrieveVapr:(NSNumber *)vaprID{
-    
-    
 
 }
-- (NSNumber*)queryAccel:(NSNumber*)qAccelValue{}
-- (NSNumber*)queryGyro:(NSNumber*)qGyroValue{}
-- (NSNumber*)queryMagneto:(NSNumber*)qMagnetoValue{}
-
-- (NSNumber*)getFrameNumber{}
-- (void)pushFrame:(NSString*)toPush{
-
+- (int)queryFrameNum{
+    //getSensorSet
+    //compareWithTolerance each sensor
     
 }
-
+//include X sensors and parameter for it.
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance{
     int diff = queryValue-vaprValue;
     if(abs(diff) <= tolerance){return 0;}

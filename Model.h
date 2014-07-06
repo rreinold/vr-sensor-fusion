@@ -8,25 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <math.h>
+#import "Vapr.h"
+#import "Sensor.h"
 
 @interface Model : NSObject
-/*
- queryAccel
- queryGyro
- queryMagneto
- init(vapr)
- getFrame
 
- */
 
-@property (retain) NSNumber *activeFrameNumber;
-@property (retain) UIImage *activeFrame;
-- (NSNumber*)retrieveVapr:(NSNumber *)vaprID;
-- (NSNumber*)queryAccel:(NSNumber *)qAccelValue;
-- (NSNumber*)queryGyro:(NSNumber *)qGyroValue;
-- (NSNumber*)queryMagneto:(NSNumber *)qMagnetoValue;
+- (id)init:(Vapr*)VaprToSet;
+- (int)queryFrameNum;
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance;
 
-- (NSNumber*)getFrameNumber;
+
 
 @end

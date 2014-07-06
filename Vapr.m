@@ -9,44 +9,27 @@
 #import "Vapr.h"
 
 @implementation Vapr
-{
-    // Private instance variables
-    double _odometer;
-}
 
-@synthesize frameNum = _frameNum;// Optional for Xcode 4.4+
-@synthesize image = _image;
-@synthesize gyro = _gyro;
-@synthesize accel = _accel;
+NSMutableArray* setHolder;
 
-
-- (UIImage*)getImage {
-    return self.image;
-}
-- (NSNumber*)getAccelY{return _accel;}
-
-- (NSNumber*)getFrameNum {
-    return self.frameNum;
-}
-
-- (NSNumber *)getGyro{return _gyro;}
-
-- (void)setAccelY:(NSNumber *)ac{_accel=ac;}
-
-- (void)setGyro:(NSNumber *)gyro{
-    _gyro = gyro;
-}
-
-- (id)initWithData:(UIImage*)im:(NSNumber *)fr:(NSNumber*)gy:(NSNumber*)ac;{
+-(id)init{
     self = [super init];
-    _image = im;
-    _frameNum = fr;
-    _gyro=gy;
-    _accel=ac;
+    
     return self;
 }
-
-
+- (void)setVideo:(NSURL*)videoLocationToSet{}
+- (void)setSensorSetArray:(NSMutableArray*)sensorSetArrayToSet{
+//setHolder = [[NSMutableArray alloc] init];
+}
+- (void)setVaprName:(NSString*)VaprNameToSet{}
+- (void)setVaprID:(NSString*)VaprIDToSet{}
+    
+- (NSURL*)getVideo{}
+- (NSMutableArray*)getSensorSetArray{}
+- (NSString*)getVaprName{}
+- (NSString*)getVaprID{}
 
 @end
+
+
 

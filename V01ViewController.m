@@ -30,8 +30,8 @@ double frameNum=0;
 {
     [super viewDidLoad];
     
-    Sensor *sense = [[Sensor alloc] initWithData:NSCast(60)] ;
-    
+    //Sensor *sense = [[Sensor alloc] initWithData:NSCast(60)] ;
+    Model* modelInUse = [[Model alloc] init];
     
 	NSString *filepath = [[NSBundle mainBundle] pathForResource:@"test6" ofType:@"mov"];
     NSURL *fileURL = [NSURL fileURLWithPath:filepath];
