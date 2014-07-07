@@ -73,7 +73,8 @@ double frameNum=0;
     }
     
         CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
-    [self.vidPlayer seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+    //TODO: CHange to 29Hz for v1
+    [self.vidPlayer seekToTime:time toleranceBefore:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) toleranceAfter:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) ];
     
     //[self.mPlayer seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
     [self printTime:(frame)];
@@ -84,7 +85,7 @@ double frameNum=0;
               CMTimeGetSeconds([self.vidPlayer currentTime])
               );
     }
-
+//TODO: CHange to 29Hz for v1
 - (IBAction)displayPrevFrame:(id)sender{
 double frame=.04*frameNum;
 frameNum--;

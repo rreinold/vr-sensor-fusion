@@ -10,12 +10,13 @@
 #import "Vapr.h"
 #define TOLERANCE 10
 @implementation Model
-
+NSTimer* timer;
 Sensor* sense;
 int CurrentFrameNum=0;
 - (id)init{
     self = [super init];
     sense = [[Sensor alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1/58 target:self selector:@selector(getSensorSet) userInfo:nil repeats:YES];
     return self;
 }
 - (id)initWithVapr:(Vapr*)VaprToSet{
@@ -30,6 +31,11 @@ int CurrentFrameNum=0;
     
     //compareWithTolerance each sensor
 }
+
+-(void)getSensorSet{
+    //NSLog(@"Yeahh bitch");
+}
+
 //include X sensors and parameter for it.
 - (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance{
     int diff = queryValue-vaprValue;

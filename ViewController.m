@@ -34,14 +34,9 @@
 }
 
 - (IBAction)aSelector:(id)sender{
-    usernameLabel.alpha=0.03;
-    passwordLabel.alpha=0.03;
+    usernameLabel.alpha=0.0;
+    passwordLabel.alpha=0.0;
     [sender resignFirstResponder];
-}
-
-- (void)transparentLabels{
-    usernameLabel.alpha=0;
-    passwordLabel.alpha=0;
 }
 
 - (void)didReceiveMemoryWarning
