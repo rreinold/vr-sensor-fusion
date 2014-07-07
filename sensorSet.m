@@ -8,6 +8,7 @@
 
 #import "sensorSet.h"
 #define scale 1000 //TODO: Implement this
+//TODO: Implement getSensorSet to grab normalized values
 
 @implementation sensorSet
 float accelx;
@@ -63,20 +64,21 @@ float tesla;
     gyrozNormal = (int) ((gyroz+3.14)*1000/6.28);
     teslaNormal = (int) ((tesla)*1000/359);
     //error checking
-    if(accelxNormal > 1000){accelxNormal=1000;}
-    else if(accelxNormal < 0){accelxNormal=0;}
-    if(accelyNormal > 1000){accelyNormal=1000;}
-    else if(accelyNormal < 0){accelyNormal=0;}
-    if(accelzNormal > 1000){accelzNormal=1000;}
-    else if(accelzNormal < 0){accelzNormal=0;}
-    if(gyroxNormal > 1000){gyroxNormal=1000;}
-    else if(gyroxNormal < 0){gyroxNormal=0;}
-    if(gyroyNormal > 1000){gyroyNormal=1000;}
-    else if(gyroyNormal < 0){gyroyNormal=0;}
-    if(gyrozNormal > 1000){gyrozNormal=1000;}
-    else if(gyrozNormal < 0){gyrozNormal=0;}
-    if(teslaNormal > 1000){teslaNormal=1000;}
-    else if(teslaNormal < 0){teslaNormal;}
+    //TODO: iterator implementation
+    if(accelxNormal > 1000){accelxNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(accelxNormal < 0){accelxNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(accelyNormal > 1000){accelyNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(accelyNormal < 0){accelyNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(accelzNormal > 1000){accelzNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(accelzNormal < 0){accelzNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(gyroxNormal > 1000){gyroxNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(gyroxNormal < 0){gyroxNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(gyroyNormal > 1000){gyroyNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(gyroyNormal < 0){gyroyNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(gyrozNormal > 1000){gyrozNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(gyrozNormal < 0){gyrozNormal=0;NSLog(@"Excedes Range!\n\n");}
+    if(teslaNormal > 1000){teslaNormal=1000;NSLog(@"Excedes Range!\n\n");}
+    else if(teslaNormal < 0){teslaNormal;NSLog(@"Excedes Range!\n\n");}
     
     printf("%u,%u,%u,%u,%u,%u,%u\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
 }
