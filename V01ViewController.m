@@ -30,8 +30,8 @@ double frameNum=0;
 {
     [super viewDidLoad];
     
-    //Sensor *sense = [[Sensor alloc] initWithData:NSCast(60)] ;
-    Model* modelInUse = [[Model alloc] init];
+    
+    
     
 	NSString *filepath = [[NSBundle mainBundle] pathForResource:@"test6" ofType:@"mov"];
     NSURL *fileURL = [NSURL fileURLWithPath:filepath];
@@ -44,6 +44,7 @@ double frameNum=0;
     //[self.vidPlayer play];
     NSLog(@"Playing video at %@",filepath);
     Vapr* currentVapr = [self createFakeVapr];
+    Model* modelInUse = [[Model alloc] initWithVapr:currentVapr];
     
     
 }
@@ -51,12 +52,7 @@ double frameNum=0;
 - (Vapr*)createFakeVapr{
     NSMutableArray* fakeSensorSetArray = [[NSMutableArray alloc] init];
     //fakeSensorSetArray
-    
-    Vapr* fakeVapr = [[Vapr alloc] initWithData:fakeSensorSetArray];
-    
     //create NSMutableArray of fake values
-    sensorSet* hey = [[sensorSet alloc] initWithNormalizedData:(-1):(-1):(-1):(-1):(-1):(-1):(0):(0)];
-
     //self.__ needs to be property
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(0):(-1):(-1):(-1):(-1):(-1):(-1):(0)]];
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(1):(-1):(-1):(-1):(-1):(-1):(-1):(10)]];
@@ -138,7 +134,17 @@ double frameNum=0;
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(77):(-1):(-1):(-1):(-1):(-1):(-1):(335)]];
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(78):(-1):(-1):(-1):(-1):(-1):(-1):(345)]];
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(79):(-1):(-1):(-1):(-1):(-1):(-1):(360)]];
-
+    
+    Vapr* fakeVapr = [[Vapr alloc] initWithData:fakeSensorSetArray];
+    
+    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"test6" ofType:@"mov"];
+    NSURL *fileURL = [NSURL fileURLWithPath:filepath];
+    [fakeVapr setVideo:fileURL];
+    [fakeVapr setVaprName:(@"Chacchoben Ruins")];
+    //TODO:set header in model
+    return fakeVapr;
+    
+    
     /*
      (0):(-1):(-1):(-1):(-1):(-1):(-1):(0
      (1):(-1):(-1):(-1):(-1):(-1):(-1):(10
@@ -220,11 +226,8 @@ double frameNum=0;
      (77):(-1):(-1):(-1):(-1):(-1):(-1):(335
      (78):(-1):(-1):(-1):(-1):(-1):(-1):(345
      (79):(-1):(-1):(-1):(-1):(-1):(-1):(360
-*/
-    
-    
-    
-    return fakeVapr;
+     */
+
 }
 
 - (IBAction)displayNextFrame:(id)sender{
