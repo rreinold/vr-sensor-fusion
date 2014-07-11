@@ -22,6 +22,5 @@ NSTimer *UItimer; //optional
 - (id)initWithData:(int)requestedFreq;
 - (sensorSet*)getSensorSet;
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
-- (int)calcLine:(int)lineNum:(float)accelx:(float)accely:(float)accelz;
 - (void)read;
 @end

@@ -11,11 +11,17 @@
 @implementation Vapr
 
 NSMutableArray* setHolder;
-
+sensorSet* mask;
+sensorSet* header;
 -(id)init{
     self = [super init];
-    
     return self;
+}
+- (id)initWithData:(NSMutableArray*)ArrayToSet{
+    self = [super init];
+    setHolder = ArrayToSet;
+    return self;
+    
 }
 - (void)setVideo:(NSURL*)videoLocationToSet{}
 - (void)setSensorSetArray:(NSMutableArray*)sensorSetArrayToSet{
@@ -23,7 +29,16 @@ NSMutableArray* setHolder;
 }
 - (void)setVaprName:(NSString*)VaprNameToSet{}
 - (void)setVaprID:(NSString*)VaprIDToSet{}
-    
+
+//TODO: Implement header and mask
+- (void)setVaprHeaderSet:(sensorSet*)headerToSet{
+    header = headerToSet;
+}
+- (void)setVaprMaskSet:(sensorSet*)maskToSet{
+    mask = maskToSet;
+}
+- (sensorSet*)getVaprHeaderSet{return header;}
+- (sensorSet*)getVaprMaskSet{return mask;}
 - (NSURL*)getVideo{}
 - (NSMutableArray*)getSensorSetArray{}
 - (NSString*)getVaprName{}

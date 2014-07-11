@@ -47,9 +47,12 @@ double frameNum=0;
     
     
 }
-
+//TODO: implement dictionaryWithObjectsAndKeys:
 - (Vapr*)createFakeVapr{
-    Vapr* fakeVapr = [[Vapr alloc] init];
+    NSMutableArray* fakeSensorSetArray = [[NSMutableArray alloc] init];
+    //fakeSensorSetArray
+    
+    Vapr* fakeVapr = [[Vapr alloc] initWithData:fakeSensorSetArray];
     
     //create NSMutableArray of fake values
     
@@ -87,13 +90,28 @@ double frameNum=0;
     }
 //TODO: CHange to 29Hz for v1
 - (IBAction)displayPrevFrame:(id)sender{
-double frame=.04*frameNum;
-frameNum--;
-    if(frameNum<0){return;}
-int32_t timeScale = self.vidPlayer.currentItem.asset.duration.timescale;
-CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
-[self.vidPlayer seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+    int32_t timeScale = self.vidPlayer.currentItem.asset.duration.timescale;
+    frameNum--;
+    double frame=.04*frameNum;
+    printf("Duration: ");
+    CMTimeShow(self.vidPlayer.currentItem.asset.duration);
+    printf("\nDictated Time: %f\n\n",frame);
+    if(
+       CMTimeCompare(CMTimeMakeWithSeconds(frame,timeScale),
+                     self.vidPlayer.currentItem.asset.duration
+                     )){
+           
+           NSLog(@"Video Finished. Ignoring Next");
+           //return;
+       }
+    
+    CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
+    //TODO: CHange to 29Hz for v1
+    [self.vidPlayer seekToTime:time toleranceBefore:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) toleranceAfter:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) ];
+    
+    //[self.mPlayer seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
     [self printTime:(frame)];
+    
 }
 
 - (IBAction)backClear:(id)sender{

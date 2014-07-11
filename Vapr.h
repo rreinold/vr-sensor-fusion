@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "sensorSet.h"
 
 @interface Vapr : NSObject
 {
@@ -26,15 +27,21 @@
 @property (retain) NSNumber *g;
 
 - (id)init;
+- (id)initWithData:(NSMutableArray*)ArrayToSet;
+- (id)setMask:(sensorSet*)maskToSet;
 - (void)setVideo:(NSURL*)videoLocationToSet;
 - (void)setSensorSetArray:(NSMutableArray*)sensorSetArrayToSet;
 - (void)setVaprName:(NSString*)VaprNameToSet;
 - (void)setVaprID:(NSString*)VaprIDToSet;
+- (void)setVaprHeaderSet:(sensorSet*)headerToSet;
+- (void)setVaprMaskSet:(sensorSet*)maskToSet;
 
 - (NSURL*)getVideo;
 - (NSMutableArray*)getSensorSetArray;
 - (NSString*)getVaprName;
 - (NSString*)getVaprID;
+- (sensorSet*)getVaprHeaderSet;
+- (sensorSet*)getVaprMaskSet;
 
 @end
 
