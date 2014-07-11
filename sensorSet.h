@@ -10,6 +10,7 @@
 
 @interface sensorSet : NSObject
 - (id) init;
+- (id) initWithNormalizedData:(int)frameNumToSet:(float)accelxToSet:(float)accelyToSet:(float)accelzToSet:(float)gyroxToSet:(float)gyroyToSet:(float)gyrozToSet:(float)teslaToSet;
 - (void) printRaw;
 - (void) printNormalized;
 - (void) setAccelX:(float) toSet;
@@ -19,6 +20,8 @@
 - (void) setGyroY:(float) toSet;
 - (void) setGyroZ:(float) toSet;
 - (void) setTesla:(float) toSet;
+- (void) setFrameNum:(int) frameNumToSet;
+- (void) setFrameTime:(float) frameTimeToSet;
 
 - (float) getAccelX;
 - (float) getAccelY;
@@ -27,5 +30,6 @@
 - (float) getGyroY;
 - (float) getGyroZ;
 - (float) getTesla;
-
+- (int) getFrameNum;
+- (float) getFrameTime;
 @end

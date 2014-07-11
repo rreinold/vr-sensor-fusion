@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Model.h"
 #import "Vapr.h"
+#import "sensorSet.h"
 
 @class AVPlayer;
 @interface V01ViewController : UIViewController
