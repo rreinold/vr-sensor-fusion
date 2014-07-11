@@ -45,7 +45,7 @@ double frameNum=0;
     NSLog(@"Playing video at %@",filepath);
     Vapr* currentVapr = [self createFakeVapr];
     Model* modelInUse = [[Model alloc] initWithVapr:currentVapr];
-    
+    //Model* modelInUse = [[Model alloc] init];
     
 }
 //TODO: implement dictionaryWithObjectsAndKeys:

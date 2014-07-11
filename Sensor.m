@@ -118,52 +118,14 @@ sensorSet *currentSet;//TODO: Here or in a property above?
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
     
-    //NSLog(@"X: %g,Y: %g,Z: %g",acceleration.x,acceleration.y,acceleration.z);
-    
-    /*======NOTES=======
-     ACCEL
-     FACEDOWN(0,0,1)
-     FACEUP(0,0,-1)
-     FACEFORWARD(0,-1,0)
-     
-     GYRO (rad/s)
-     1st Roll
-     2nd Pitch
-     3rd Yaw
-     + Y to left, - Y to right, .3 threshold
-     
-     Graph
-     Functions
-     0th y=x+1
-     1st y=x+.6
-     2nd y=x+.2
-     3rd y=x-.2
-     4th y=x-.6
-     5th y=x-1
-     
-     object to contain UIImage and respective Gyro, Accel data
-     Gyro = set to 0 at
-     =====END NOTES====
-     */
-    
-    
-    /*====Version.01 BASIC FUNCTIONALITY====
-     if( (acceleration.y > -.1 && acceleration.y < .1) && (acceleration.z > .9)){NSLog(@"FACEDOWN!");}
-     if( (acceleration.y > -.1 && acceleration.y < .1) && (acceleration.z < -.9)){NSLog(@"FACEUP!");}
-     if( (acceleration.z > -.1 && acceleration.z < .1) && (acceleration.y < -.9)){NSLog(@"FACEFORWARD!");}
-     
-     //Determine quadrant
-     if(acceleration.y < 0 && acceleration.z < 0){quadrant = 3;}
-     else if(acceleration.y < 0 && acceleration.z > 0){quadrant = 4;}
-     ====END BASIC FUNCTIONALITY====
-     */
+         
     
     //obtain Y value and update Label
-    //[currentSet setAccelY:([self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)])];
+    
     [currentSet setAccelY:(acceleration.y)];
     [currentSet setAccelX:(acceleration.x)];
     [currentSet setAccelZ:(acceleration.z)];
-    //[currentSet printNormalized];
+    [currentSet printNormalized];
     //int yValue = [self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)];
     //NSLog(@"Y:%i",yValue);
     //========>accelNow = yValue;
@@ -176,3 +138,43 @@ sensorSet *currentSet;//TODO: Here or in a property above?
 
 
 @end
+
+//NSLog(@"X: %g,Y: %g,Z: %g",acceleration.x,acceleration.y,acceleration.z);
+
+/*======NOTES=======
+ ACCEL
+ FACEDOWN(0,0,1)
+ FACEUP(0,0,-1)
+ FACEFORWARD(0,-1,0)
+ 
+ GYRO (rad/s)
+ 1st Roll
+ 2nd Pitch
+ 3rd Yaw
+ + Y to left, - Y to right, .3 threshold
+ 
+ Graph
+ Functions
+ 0th y=x+1
+ 1st y=x+.6
+ 2nd y=x+.2
+ 3rd y=x-.2
+ 4th y=x-.6
+ 5th y=x-1
+ 
+ object to contain UIImage and respective Gyro, Accel data
+ Gyro = set to 0 at
+ =====END NOTES====
+ */
+
+
+/*====Version.01 BASIC FUNCTIONALITY====
+ if( (acceleration.y > -.1 && acceleration.y < .1) && (acceleration.z > .9)){NSLog(@"FACEDOWN!");}
+ if( (acceleration.y > -.1 && acceleration.y < .1) && (acceleration.z < -.9)){NSLog(@"FACEUP!");}
+ if( (acceleration.z > -.1 && acceleration.z < .1) && (acceleration.y < -.9)){NSLog(@"FACEFORWARD!");}
+ 
+ //Determine quadrant
+ if(acceleration.y < 0 && acceleration.z < 0){quadrant = 3;}
+ else if(acceleration.y < 0 && acceleration.z > 0){quadrant = 4;}
+ ====END BASIC FUNCTIONALITY====
+ */

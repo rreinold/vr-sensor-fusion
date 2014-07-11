@@ -21,7 +21,8 @@ int CurrentFrameNum=0;
 }
 - (id)initWithVapr:(Vapr*)VaprToSet{
     self = [super init];
-    //Sensor* sense = [[Sensor alloc] init];
+    sense = [[Sensor alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1/58 target:self selector:@selector(getSensorSet) userInfo:nil repeats:YES];
     return self;
     
 }
