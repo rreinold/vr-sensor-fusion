@@ -13,6 +13,7 @@
 - (id) initWithNormalizedData:(int)frameNumToSet:(float)accelxToSet:(float)accelyToSet:(float)accelzToSet:(float)gyroxToSet:(float)gyroyToSet:(float)gyrozToSet:(float)teslaToSet;
 - (void) printRaw;
 - (void) printNormalized;
+- (void) printNormalizedComparison:(sensorSet*) VaprSensorSetToSet;
 - (void) setAccelX:(float) toSet;
 - (void) setAccelY:(float) toSet;
 - (void) setAccelZ:(float) toSet;

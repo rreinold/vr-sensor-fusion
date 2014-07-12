@@ -14,9 +14,10 @@
 @end
 
 @implementation V01ViewController
-
+Model* modelInUse;
 @synthesize vidPlayer;
 double frameNum=0;
+NSTimer* timer;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,10 +45,21 @@ double frameNum=0;
     //[self.vidPlayer play];
     NSLog(@"Playing video at %@",filepath);
     Vapr* currentVapr = [self createFakeVapr];
-    Model* modelInUse = [[Model alloc] initWithVapr:currentVapr];
+    modelInUse = [[Model alloc] initWithVapr:currentVapr];
     //Model* modelInUse = [[Model alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1/29 target:self selector:@selector(queryFrameNum) userInfo:nil repeats:YES];
+
     
 }
+
+- (void)queryFrameNum{
+    int nextFrame = [modelInUse queryCurrentFrameNum];
+    if(nextFrame != frameNum){
+        frameNum = nextFrame;
+        [self displayFrameProg:(frameNum)];
+    }
+}
+
 //TODO: implement dictionaryWithObjectsAndKeys:
 - (Vapr*)createFakeVapr{
     NSMutableArray* fakeSensorSetArray = [[NSMutableArray alloc] init];
@@ -228,6 +240,33 @@ double frameNum=0;
      (79):(-1):(-1):(-1):(-1):(-1):(-1):(360
      */
 
+}
+- (void)displayNextFrameProg:(int)frameNumToSet{
+    int32_t timeScale = self.vidPlayer.currentItem.asset.duration.timescale;
+    frameNum++;
+    double frame=.04*frameNumToSet;
+    CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
+    [self.vidPlayer seekToTime:time toleranceBefore:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) toleranceAfter:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) ];
+    [self printTime:(frame)];
+}
+
+- (void)displayPrevFrameProg:(int)frameNumToSet{
+    int32_t timeScale = self.vidPlayer.currentItem.asset.duration.timescale;
+    frameNum--;
+    double frame=.04*frameNumToSet;
+    CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
+    [self.vidPlayer seekToTime:time toleranceBefore:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) toleranceAfter:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) ];
+    [self printTime:(frame)];
+    
+}
+
+- (void)displayFrameProg:(int)frameNumToSet{
+    int32_t timeScale = self.vidPlayer.currentItem.asset.duration.timescale;
+    double frame=.04*frameNumToSet;
+    CMTime time = CMTimeMakeWithSeconds(frame, timeScale);
+    [self.vidPlayer seekToTime:time toleranceBefore:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) toleranceAfter:CMTimeMakeWithSeconds(0.004,NSEC_PER_SEC) ];
+    [self printTime:(frame)];
+    
 }
 
 - (IBAction)displayNextFrame:(id)sender{

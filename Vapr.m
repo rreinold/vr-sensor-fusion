@@ -40,7 +40,7 @@ sensorSet* header;
 - (sensorSet*)getVaprHeaderSet{return header;}
 - (sensorSet*)getVaprMaskSet{return mask;}
 - (NSURL*)getVideo{}
-- (NSMutableArray*)getSensorSetArray{}
+- (NSMutableArray*)getSensorSetArray{return setHolder;}
 - (NSString*)getVaprName{}
 - (NSString*)getVaprID{}
 

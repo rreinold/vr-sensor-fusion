@@ -78,6 +78,7 @@ float frameTime;
     printf("%f,%f,%f,%f,%f,%f,%f\n",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
 }
 
+
 - (void) printNormalized{
     
     //create ints to truncate decimals
@@ -108,5 +109,17 @@ float frameTime;
     
     printf("%u,%u,%u,%u,%u,%u,%u\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
 }
+
+- (void) printNormalizedComparison: (sensorSet*)VaprSensorSetToSet{
+    [self printNormalized];
+     printf("%f,%f,%f,%f,%f,%f,%f\n",
+            VaprSensorSetToSet.getAccelX,
+            VaprSensorSetToSet.getAccelY,
+            VaprSensorSetToSet.getAccelZ,
+            VaprSensorSetToSet.getGyroX,
+            VaprSensorSetToSet.getGyroY,
+            VaprSensorSetToSet.getGyroZ,
+            VaprSensorSetToSet.getTesla);
+            }
 
 @end

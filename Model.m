@@ -10,9 +10,11 @@
 #import "Vapr.h"
 #define TOLERANCE 10
 @implementation Model
+@synthesize sense;
 NSTimer* timer;
-Sensor* sense;
+
 int CurrentFrameNum=0;
+Vapr* VaprInUse;
 - (id)init{
     self = [super init];
     sense = [[Sensor alloc] init];
@@ -21,6 +23,7 @@ int CurrentFrameNum=0;
 }
 - (id)initWithVapr:(Vapr*)VaprToSet{
     self = [super init];
+    VaprInUse = VaprToSet;
     sense = [[Sensor alloc] init];
     timer = [NSTimer scheduledTimerWithTimeInterval:1/58 target:self selector:@selector(getSensorSet) userInfo:nil repeats:YES];
     return self;
@@ -28,8 +31,12 @@ int CurrentFrameNum=0;
 }
 - (int)queryCurrentFrameNum{
     //getSensorSet
-    sensorSet* currentModelSensorSet = sense.getSensorSet;
-    
+    sensorSet* currentModelSensorSet = [sense getSensorSet];
+    sensorSet * currentVaprSensorSet = [VaprInUse.getSensorSetArray objectAtIndex:(0) ];
+[self compareWithTolerance:
+ (currentModelSensorSet):
+  (currentVaprSensorSet):
+ (TOLERANCE) ];
     //compareWithTolerance each sensor
 }
 
@@ -38,11 +45,14 @@ int CurrentFrameNum=0;
 }
 
 //include X sensors and parameter for it.
-- (int)compareWithTolerance:(int)queryValue:(int)vaprValue:(int)tolerance{
-    int diff = queryValue-vaprValue;
-    if(abs(diff) <= tolerance){return 0;}
-    else if (diff >=0){return 1;}
-    else if (diff <0){return -1;}
-    else return -2;//TODO: need alternate void return value
+- (int)compareWithTolerance:(sensorSet*)liveSensorSet:(sensorSet*)VaprSensorSet:(int)tolerance{
+    //if >0 compare else skip
+    
+    //TODO: Fuck this.
+    //[sense printRaw];
+    [sense getSensorSet];
+    return 1;
 }
+
+
 @end
