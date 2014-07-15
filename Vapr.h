@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "sensorSet.h"
 
 @interface Vapr : NSObject
 {
@@ -18,21 +19,29 @@
 //3. Name
 //4. Fascia
 //5. Node Graph w Data
-//6. 
+//6.
+
+//TODO: Remove 3 Lines, keep  atm for reference
 @property (retain) NSNumber *frameNum;
-@property (retain) UIImage *image;
-@property (retain) NSNumber *gyro;
-@property (retain) NSNumber *accel;
+@property (retain) UIImage *fascia;
+@property (retain) NSNumber *g;
 
-- (void)drive;
-- (NSNumber*)getFrameNum;
-- (UIImage*)getImage;
-- (NSNumber*)getAccelY;
-- (NSNumber*)getGyro;
+- (id)init;
+- (id)initWithData:(NSMutableArray*)ArrayToSet;
+- (id)setMask:(sensorSet*)maskToSet;
+- (void)setVideo:(NSURL*)videoLocationToSet;
+- (void)setSensorSetArray:(NSMutableArray*)sensorSetArrayToSet;
+- (void)setVaprName:(NSString*)VaprNameToSet;
+- (void)setVaprID:(NSString*)VaprIDToSet;
+- (void)setVaprHeaderSet:(sensorSet*)headerToSet;
+- (void)setVaprMaskSet:(sensorSet*)maskToSet;
 
-- (void)setAccelY:(NSNumber *)ac;
-- (void)setGyro:(NSNumber *)gy;
-- (id)initWithData:(UIImage*)im:(NSNumber *)fr:(NSNumber*)gy:(NSNumber*)ac;
+- (NSURL*)getVideo;
+- (NSMutableArray*)getSensorSetArray;
+- (NSString*)getVaprName;
+- (NSString*)getVaprID;
+- (sensorSet*)getVaprHeaderSet;
+- (sensorSet*)getVaprMaskSet;
 
 @end
 

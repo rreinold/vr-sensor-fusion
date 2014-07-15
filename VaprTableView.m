@@ -27,9 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	/*Testing Purposing
     sensorSet* test = [[sensorSet alloc] init];
     [test print];
+                      */
     
 }
 

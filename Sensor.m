@@ -18,7 +18,17 @@
 
 @implementation Sensor
 sensorSet *currentSet;//TODO: Here or in a property above?
-- (id)initWithData:(NSNumber*)requestedFreq{
+//TODO: Multiple inits
+- (id)init{
+    self = [super init];
+    //NSLog(@"Accelerometer Frequency: %@",requestedFreq);
+    [self initialize];
+    [self initTesla];
+    currentSet = [[sensorSet alloc] init];
+    return self;
+}
+
+- (id)initWithData:(int)requestedFreq{
     self = [super init];
     NSLog(@"Accelerometer Frequency: %@",requestedFreq);
     [self initialize];
@@ -102,6 +112,9 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     
 }
 
+- (sensorSet*)getSensorSet{
+    return currentSet;
+}
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
     
@@ -150,7 +163,7 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     [currentSet setAccelY:(acceleration.y)];
     [currentSet setAccelX:(acceleration.x)];
     [currentSet setAccelZ:(acceleration.z)];
-    [currentSet print];
+    //[currentSet printNormalized];
     //int yValue = [self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)];
     //NSLog(@"Y:%i",yValue);
     //========>accelNow = yValue;
@@ -159,40 +172,6 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     
 }
 
-- (int)calcLine:(int)lineNum:(float)accelx:(float)accely:(float)accelz {
-    int closestLine; 
-    float calcTemp1 = 1;
-    float calcTemp2 = -1;
-    float calcTemp3 = 1-.4*lineNum;
-    float distance;
-    float top = 10;
-    closestLine = 0;
-    
-    if(accelz<=0){
-        for(int i = 0;i<6;i++){
-            calcTemp3 = 1-.4*i;
-            distance = ( calcTemp1 * accelz + calcTemp2 * accely + calcTemp3)/1.4142135;
-            if(fabs(distance)<top && distance >=0){closestLine = i;top=fabs(distance);}
-            else if(fabs(distance)<top && distance <0){closestLine = i-1;top=fabs(distance);}
-            
-            //if(closestLine = -1){closestLine=0;}
-        }
-    }
-    else{
-        calcTemp1=-1;
-        for(int i = 0;i<6;i++){
-            calcTemp3 = 1-.4*i;
-            distance = ( calcTemp1 * accelz + calcTemp2 * accely + calcTemp3)/1.4142135;
-            if(fabs(distance)<top && distance >=0){closestLine = i;top=fabs(distance);}
-            else if(fabs(distance)<top && distance <0){closestLine = i-1;top=fabs(distance);}
-            
-            //if(closestLine = -1){closestLine=0;}
-        }
-        closestLine=-closestLine+9;
-        
-    }
-    return closestLine+1;
-}
 
 
 

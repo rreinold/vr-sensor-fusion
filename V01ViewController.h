@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Model.h"
+#import "Vapr.h"
+
 @class AVPlayer;
 @interface V01ViewController : UIViewController
 @property (nonatomic, copy) NSURL* URL;

@@ -15,16 +15,28 @@
 
 @implementation ViewController
 
-@synthesize username,password,loginBorder;
+@synthesize username,usernameLabel, password, passwordLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //    [self.loginBorder.layer setCornerRadius:5.0]; //reference
+    SEL aSelector = @selector(transparentLabels);
+    username.alpha=0.88;
+    password.alpha = 0.88;
+    password.borderStyle = UITextBorderStyleRoundedRect;
+    username.borderStyle = UITextBorderStyleRoundedRect;
     
-    //set up cornered, transparent border
-    loginBorder.alpha = 0.5;
+    //password.backgroundColor = [UIColor grayColor];
+    //password.backgroundColor = [UIColor grayColor];
     //loginBorder.layer.cornerRadius = 10.0;
-    [self.loginBorder.layer setCornerRadius:5.0];
+
+}
+
+- (IBAction)aSelector:(id)sender{
+    usernameLabel.alpha=0.0;
+    passwordLabel.alpha=0.0;
+    [sender resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,7 +50,7 @@
 }
 //Drop keyboard when return is pressed
 - (IBAction)textFieldReturn:(id)sender{
-    
+    if(username.hasText == FALSE){usernameLabel.alpha=1;passwordLabel.alpha=1;}
     [sender resignFirstResponder];
 }
 @end

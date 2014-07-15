@@ -15,8 +15,9 @@
     //instantiate username, password field and transparent border
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;
-    IBOutlet UILabel *loginBorder;
     IBOutlet UIImageView *signUpIcon;
+    IBOutlet UILabel *usernameLabel;
+    IBOutlet UILabel *passwordLabel;
     
     
 }
@@ -27,6 +28,8 @@
 //pass username, password, and border to implementation
 @property (nonatomic,retain) IBOutlet UITextField *username;
 @property (nonatomic,retain) IBOutlet UITextField *password;
-@property(nonatomic,retain)IBOutlet UILabel *loginBorder;
+@property (nonatomic,retain) IBOutlet UILabel *usernameLabel;
+@property (nonatomic,retain) IBOutlet UILabel *passwordLabel;;
+
 
 @end
