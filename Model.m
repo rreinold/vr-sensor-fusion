@@ -5,7 +5,7 @@
 //  Created by Robert Reinold on 5/28/14.
 //  Copyright (c) 2014 Robert Reinold. All rights reserved.
 //TODO: 60Hz Timer: Update sensor values, and pull sensor data. Better off at 58Hz.
-
+//TODO: Error Handling on Files. No "Broken Windows"
 #import "Model.h"
 #import "Vapr.h"
 #define TOLERANCE 10
