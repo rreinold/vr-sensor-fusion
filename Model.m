@@ -23,33 +23,47 @@ Vapr* VaprInUse;
 }
 - (id)initWithVapr:(Vapr*)VaprToSet{
     self = [super init];
-    VaprInUse = VaprToSet;
-    sense = [[Sensor alloc] init];
-    timer = [NSTimer scheduledTimerWithTimeInterval:1/58 target:self selector:@selector(getSensorSet) userInfo:nil repeats:YES];
+    VaprInUse = VaprToSet; //set Vapr
+    sense = [[Sensor alloc] init]; //allocate Sensor Object
+    timer = [NSTimer scheduledTimerWithTimeInterval:1/58 target:self selector:@selector(getSensorSet) userInfo:nil repeats:YES];//call empty function 58Hz
     return self;
     
 }
+//called above by ViewController at 58Hz
 - (int)queryCurrentFrameNum{
-    //getSensorSet
-    sensorSet* currentModelSensorSet = [sense getSensorSet];
-    sensorSet * currentVaprSensorSet = [VaprInUse.getSensorSetArray objectAtIndex:(0) ];
-[self compareWithTolerance:
- (currentModelSensorSet):
-  (currentVaprSensorSet):
- (TOLERANCE) ];
-    //compareWithTolerance each sensor
+    sensorSet* currentModelSensorSet = [sense getSensorSet]; //grab current sensor data
+    [currentModelSensorSet normalize]; //normalize sensor data to (0,1000)
+    sensorSet* currentVaprSensorSet = [VaprInUse.getSensorSetArray objectAtIndex:(CurrentFrameNum)]; //get first Vapr array object
+    //compare with tolerance each sensor
+    if(
+       [currentModelSensorSet getTesla] != -1 &&
+       [self compareWithTolerance:                     [currentModelSensorSet getTesla]:                            [currentVaprSensorSet getTesla]:TOLERANCE]==1){
+        //CurrentFrameNum++;
+    }
+    else if([currentModelSensorSet getAccelY] != -1 &&
+       [self compareWithTolerance:
+        [currentModelSensorSet getAccelY]:
+        [currentVaprSensorSet getAccelY]:
+                                  TOLERANCE
+        ]==1){
+           //CurrentFrameNum++;
+       }
+        
+        
+    
 }
 
 -(void)getSensorSet{
     //NSLog(@"Yeahh bitch");
 }
-
-//include X sensors and parameter for it.
-- (int)compareWithTolerance:(sensorSet*)currentModelSensorSet:(sensorSet*)currentVaprSensorSet:(int)tolerance{
-    //if >0 compare else skip
-    currentModelSensorSet = [sense getSensorSet];
-    [currentModelSensorSet printNormalizedComparison:currentVaprSensorSet];
+//take tesla roundoff into account
+- (int)compareWithTolerance:(int)toCompare:(int)VaprValue:(int)tolerance{
+    int diff = VaprValue - toCompare;
+    diff = abs(diff);
+    if(diff < tolerance){return 1;}
+    else{return 0;}
 }
+
 
 
 @end

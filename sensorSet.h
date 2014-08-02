@@ -14,6 +14,8 @@
 - (void) printRaw;
 - (void) printNormalized;
 - (void) printNormalizedComparison:(sensorSet*) VaprSensorSetToSet;
+- (void) printPostNormalized;
+- (void) normalize;
 - (void) setAccelX:(float) toSet;
 - (void) setAccelY:(float) toSet;
 - (void) setAccelZ:(float) toSet;

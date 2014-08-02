@@ -17,7 +17,7 @@
 - (id)init;
 - (id)initWithVapr:(Vapr*)VaprToSet;
 - (int)queryCurrentFrameNum;
-- (int)compareWithTolerance:(sensorSet*)liveSensorSet:(sensorSet*)VaprSensorSet:(int)tolerance;
+- (int)compareWithTolerance:(int)toCompare:(int)VaprValue:(int)tolerance;
 @property (nonatomic, retain) Sensor* sense;
 
 

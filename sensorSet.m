@@ -21,6 +21,8 @@ float tesla;
 float frameNum;
 float frameTime;
 
+int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal;
+
 - (id) init{
     accelx=0;
     accely=0;
@@ -115,5 +117,20 @@ float frameTime;
     [VaprSensorSetToSet printNormalized];
 
             }
+
+- (void) printPostNormalized{
+    
+        printf("%f,%f,%f,%f,%f,%f,%f\n",accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal);
+}
+- (void) normalize{
+    accelxNormal = (int) ((accelx+8)*1000/16);
+    accelyNormal = (int) ((accely+8)*1000/16);
+    accelzNormal = (int) ((accelz+8)*1000/16);
+    gyroxNormal = (int) ((gyrox+3.14)*1000/6.28);
+    gyroyNormal = (int) ((gyroy+3.14)*1000/6.28);
+    gyrozNormal = (int) ((gyroz+3.14)*1000/6.28);
+    teslaNormal = (int) ((tesla)*1000/359);
+    
+}
 
 @end
