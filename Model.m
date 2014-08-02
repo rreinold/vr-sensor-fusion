@@ -45,13 +45,10 @@ Vapr* VaprInUse;
 }
 
 //include X sensors and parameter for it.
-- (int)compareWithTolerance:(sensorSet*)liveSensorSet:(sensorSet*)VaprSensorSet:(int)tolerance{
+- (int)compareWithTolerance:(sensorSet*)currentModelSensorSet:(sensorSet*)currentVaprSensorSet:(int)tolerance{
     //if >0 compare else skip
-    
-    //TODO: Fuck this.
-    //[sense printRaw];
-    [sense getSensorSet];
-    return 1;
+    currentModelSensorSet = [sense getSensorSet];
+    [currentModelSensorSet printNormalizedComparison:currentVaprSensorSet];
 }
 
 

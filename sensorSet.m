@@ -112,14 +112,8 @@ float frameTime;
 
 - (void) printNormalizedComparison: (sensorSet*)VaprSensorSetToSet{
     [self printNormalized];
-     printf("%f,%f,%f,%f,%f,%f,%f\n",
-            VaprSensorSetToSet.getAccelX,
-            VaprSensorSetToSet.getAccelY,
-            VaprSensorSetToSet.getAccelZ,
-            VaprSensorSetToSet.getGyroX,
-            VaprSensorSetToSet.getGyroY,
-            VaprSensorSetToSet.getGyroZ,
-            VaprSensorSetToSet.getTesla);
+    [VaprSensorSetToSet printNormalized];
+
             }
 
 @end
