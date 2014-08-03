@@ -15,8 +15,7 @@
 
 @implementation V01ViewController
 Model* modelInUse;
-@synthesize vidPlayer;
-double frameNum=0;
+@synthesize vidPlayer,frameNum;
 NSTimer* timer;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,9 +42,10 @@ NSTimer* timer;
     //==========End AVPlayer Setup==========
     
     //==========Begin Object & Timer Setup==========
+    frameNum=0;
     Vapr* currentVapr = [self createFakeVapr];
     modelInUse = [[Model alloc] initWithVapr:currentVapr];
-    //timer = [NSTimer scheduledTimerWithTimeInterval:1/29 target:self selector:@selector(queryFrameNum) userInfo:nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1/10 target:self selector:@selector(queryFrameNum) userInfo:nil repeats:YES];
     //==========End Object & Timer Setup==========
 }
 
@@ -62,6 +62,7 @@ NSTimer* timer;
     NSMutableArray* fakeSensorSetArray = [[NSMutableArray alloc] init];
     //fakeSensorSetArray
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(0):(-1):(-1):(-1):(-1):(-1):(-1):(0)]];
+    NSLog(@"Should be -1 0: %u, %u\n",[[fakeSensorSetArray objectAtIndex:0] getTesla]);
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(1):(-1):(-1):(-1):(-1):(-1):(-1):(10)]];
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(2):(-1):(-1):(-1):(-1):(-1):(-1):(20)]];
     [fakeSensorSetArray addObject:[[sensorSet alloc] initWithNormalizedData:(3):(-1):(-1):(-1):(-1):(-1):(-1):(35)]];

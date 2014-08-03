@@ -11,20 +11,20 @@
 //TODO: Implement getSensorSet to grab normalized values
 
 @implementation sensorSet
-float accelx;
-float accely;
-float accelz;
-float gyrox;
-float gyroy;
-float gyroz;
-float tesla;
-float frameNum;
-float frameTime;
+int accelx;
+int accely;
+int accelz;
+int gyrox;
+int gyroy;
+int gyroz;
+int tesla;
+int frameNum;
+int frameTime;
 
 int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal;
 
 - (id) init{
-    accelx=0;
+    accelx=1;
     accely=0;
     accelz=0;
     gyrox=0;
@@ -36,13 +36,14 @@ int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,t
 }
 - (id) initWithNormalizedData:
 (int)frameNumToSet:
-(float)accelxToSet:
-(float)accelyToSet:
-(float)accelzToSet:
-(float)gyroxToSet:
-(float)gyroyToSet:
-(float)gyrozToSet:
-(float)teslaToSet{
+(int)accelxToSet:
+(int)accelyToSet:
+(int)accelzToSet:
+(int)gyroxToSet:
+(int)gyroyToSet:
+(int)gyrozToSet:
+(int)teslaToSet{
+        self = [super init];
     frameNum = frameNumToSet;
     accelx = accelxToSet;
     accely = accelyToSet;
@@ -51,33 +52,33 @@ int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,t
     gyroy = gyroyToSet;
     gyroz = gyrozToSet;
     tesla = teslaToSet;
-    self = [super init];
+
     return self;
     
 }
-- (void) setAccelX:(float) toSet{accelx=toSet;}
-- (void) setAccelY:(float) toSet{accely=toSet;}
-- (void) setAccelZ:(float) toSet{accelz=toSet;}
-- (void) setGyroX:(float) toSet{gyrox=toSet;}
-- (void) setGyroY:(float) toSet{gyroy=toSet;}
-- (void) setGyroZ:(float) toSet{gyroz=toSet;}
-- (void) setTesla:(float) toSet{tesla=toSet;}
+- (void) setAccelX:(int) toSet{accelx=toSet;}
+- (void) setAccelY:(int) toSet{accely=toSet;}
+- (void) setAccelZ:(int) toSet{accelz=toSet;}
+- (void) setGyroX:(int) toSet{gyrox=toSet;}
+- (void) setGyroY:(int) toSet{gyroy=toSet;}
+- (void) setGyroZ:(int) toSet{gyroz=toSet;}
+- (void) setTesla:(int) toSet{tesla=toSet;}
 - (void) setFrameNum:(int) frameNumToSet{frameNum = frameNumToSet;}
-- (void) setFrameTime:(float) frameTimeToSet{frameTime = frameTimeToSet;}
+- (void) setFrameTime:(int) frameTimeToSet{frameTime = frameTimeToSet;}
 
-- (float) getAccelX{return accelx;}
-- (float) getAccelY{return accely;}
-- (float) getAccelZ{return accelz;}
-- (float) getGyroX{return gyrox;}
-- (float) getGyroY{return gyroy;}
-- (float) getGyroZ{return gyroz;}
-- (float) getTesla{return tesla;}
+- (int) getAccelX{return accelx;}
+- (int) getAccelY{return accely;}
+- (int) getAccelZ{return accelz;}
+- (int) getGyroX{return gyrox;}
+- (int) getGyroY{return gyroy;}
+- (int) getGyroZ{return gyroz;}
+- (int) getTesla{return tesla;}
 - (int) getFrameNum{return frameNum;}
-- (float) getFrameTime{return frameTime;}
+- (int) getFrameTime{return frameTime;}
 
 - (void) printRaw{
     //NSLog(@"X: %f Y: %f Z: %f X: %f Y: %f Z: %f T: %f",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
-    printf("%f,%f,%f,%f,%f,%f,%f\n",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
+    printf("%u,%u,%u,%u,%u,%u,%u\n",accelx,accely,accelz,gyrox,gyroy,gyroz,tesla);
 }
 
 
@@ -130,6 +131,7 @@ int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,t
     gyroyNormal = (int) ((gyroy+3.14)*1000/6.28);
     gyrozNormal = (int) ((gyroz+3.14)*1000/6.28);
     teslaNormal = (int) ((tesla)*1000/359);
+    
     
 }
 

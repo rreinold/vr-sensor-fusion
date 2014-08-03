@@ -18,6 +18,7 @@
 
 @implementation Sensor
 sensorSet *currentSet;//TODO: Here or in a property above?
+int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,teslaNormal;
 //TODO: Multiple inits
 - (id)init{
     self = [super init];
@@ -52,7 +53,11 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     self.currentHeading = newHeading;
     //self.headingLabel.text = [NSString stringWithFormat:@"%d, (int)newHeading.magneticHeading];
     //NSLog(@"Magnetic Reading: %i",(int)newHeading.magneticHeading);
-    [currentSet setTesla:((float)newHeading.magneticHeading)];
+    
+    teslaNormal = (int) ((newHeading.magneticHeading)*1000/359);
+    [currentSet setTesla:teslaNormal];
+    //NSLog(@"Tesla: %u",[currentSet getTesla]);
+    
 }
 - (BOOL)locationManagerShowShouldDisplayHeadingCalibration:(CLLocationManager*)manager{
     if(self.currentHeading == nil)
@@ -102,9 +107,19 @@ sensorSet *currentSet;//TODO: Here or in a property above?
     
     //float storeYaw;
     //NSLog(@"Yaw is %f",attitude.yaw);
-    [currentSet setGyroX:((float)attitude.pitch)];
-    [currentSet setGyroY:((float)attitude.yaw)];
-    [currentSet setGyroZ:((float)attitude.roll)];
+    //int gyroxNormal,gyroyNormal,gyrozNormal;
+
+    gyroxNormal = (int) ((attitude.pitch+3.14)*1000/6.28);
+    gyroyNormal = (int) ((attitude.yaw+3.14)*1000/6.28);
+    gyrozNormal = (int) ((attitude.roll+3.14)*1000/6.28);
+
+    
+    [currentSet setGyroX:(gyroxNormal)];
+    [currentSet setGyroY:gyroyNormal];
+    [currentSet setGyroZ:(gyrozNormal)];
+    //NSLog(@"Gyro X is %u ",[currentSet getGyroX]);
+    //NSLog(@"Gyro X is %u ",[currentSet getGyroY]);
+    //NSLog(@"Gyro X is %u ",[currentSet getGyroZ]);
     
 
     //float storeYaw = attitude.yaw;
@@ -113,7 +128,18 @@ sensorSet *currentSet;//TODO: Here or in a property above?
 }
 
 - (sensorSet*)getSensorSet{
-    return currentSet;
+    [currentSet printRaw];
+    //NSLog(@"currentSet gyro is %u",[currentSet getGyroX]);
+    sensorSet* toReturn = [[sensorSet alloc] init];
+    [toReturn setGyroX:(gyroxNormal)];
+    [toReturn setGyroY:gyroyNormal];
+    [toReturn setGyroZ:(gyrozNormal)];
+    [toReturn setAccelY:(accelxNormal)];
+    [toReturn setAccelX:(accelyNormal)];
+    [toReturn setAccelZ:(accelzNormal)];
+    [toReturn setTesla:teslaNormal];
+    [toReturn printRaw];
+        return currentSet;
 }
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
@@ -121,10 +147,20 @@ sensorSet *currentSet;//TODO: Here or in a property above?
          
     
     //obtain Y value and update Label
+    //int accelxNormal,accelyNormal,accelzNormal;
+    accelxNormal = (int) ((acceleration.x+8)*1000/16);
+    accelyNormal = (int) ((acceleration.y+8)*1000/16);
+    accelzNormal = (int) ((acceleration.z+8)*1000/16);
     
-    [currentSet setAccelY:(acceleration.y)];
-    [currentSet setAccelX:(acceleration.x)];
-    [currentSet setAccelZ:(acceleration.z)];
+    
+    [currentSet setAccelY:(accelxNormal)];
+    [currentSet setAccelX:(accelyNormal)];
+    [currentSet setAccelZ:(accelzNormal)];
+    
+    //NSLog(@"Accel X is %u ",[currentSet getAccelX]);
+    //NSLog(@"Accel X is %u ",[currentSet getAccelY]);
+    //NSLog(@"Accel X is %u ",[currentSet getAccelZ]);
+    
     //[currentSet printNormalized];
     //int yValue = [self calcLine:(0):(acceleration.x):(acceleration.y):(acceleration.z)];
     //NSLog(@"Y:%i",yValue);

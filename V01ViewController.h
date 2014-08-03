@@ -16,6 +16,7 @@
 @interface V01ViewController : UIViewController
 @property (nonatomic, copy) NSURL* URL;
 @property (nonatomic, strong) AVPlayer* vidPlayer;
+@property int frameNum;
 - (IBAction)displayNextFrame:(id)sender;
 - (IBAction)displayPrevFrame:(id)sender;
 - (IBAction)backClear:(id)sender;

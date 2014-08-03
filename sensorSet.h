@@ -10,29 +10,29 @@
 
 @interface sensorSet : NSObject
 - (id) init;
-- (id) initWithNormalizedData:(int)frameNumToSet:(float)accelxToSet:(float)accelyToSet:(float)accelzToSet:(float)gyroxToSet:(float)gyroyToSet:(float)gyrozToSet:(float)teslaToSet;
+- (id) initWithNormalizedData:(int)frameNumToSet:(int)accelxToSet:(int)accelyToSet:(int)accelzToSet:(int)gyroxToSet:(int)gyroyToSet:(int)gyrozToSet:(int)teslaToSet;
 - (void) printRaw;
 - (void) printNormalized;
 - (void) printNormalizedComparison:(sensorSet*) VaprSensorSetToSet;
 - (void) printPostNormalized;
 - (void) normalize;
-- (void) setAccelX:(float) toSet;
-- (void) setAccelY:(float) toSet;
-- (void) setAccelZ:(float) toSet;
-- (void) setGyroX:(float) toSet;
-- (void) setGyroY:(float) toSet;
-- (void) setGyroZ:(float) toSet;
-- (void) setTesla:(float) toSet;
+- (void) setAccelX:(int) toSet;
+- (void) setAccelY:(int) toSet;
+- (void) setAccelZ:(int) toSet;
+- (void) setGyroX:(int) toSet;
+- (void) setGyroY:(int) toSet;
+- (void) setGyroZ:(int) toSet;
+- (void) setTesla:(int) toSet;
 - (void) setFrameNum:(int) frameNumToSet;
-- (void) setFrameTime:(float) frameTimeToSet;
+- (void) setFrameTime:(int) frameTimeToSet;
 
-- (float) getAccelX;
-- (float) getAccelY;
-- (float) getAccelZ;
-- (float) getGyroX;
-- (float) getGyroY;
-- (float) getGyroZ;
-- (float) getTesla;
+- (int) getAccelX;
+- (int) getAccelY;
+- (int) getAccelZ;
+- (int) getGyroX;
+- (int) getGyroY;
+- (int) getGyroZ;
+- (int) getTesla;
 - (int) getFrameNum;
-- (float) getFrameTime;
+- (int) getFrameTime;
 @end
