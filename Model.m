@@ -55,20 +55,19 @@ int accelzArray[] ={9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,
     printf("entry: %u Tesla: %u, Z: %u\n",CurrentFrameNum,teslaArray[CurrentFrameNum],accelzArray[CurrentFrameNum]);
     //compare with tolerance each sensor
     if(
-       [currentModelSensorSet getTesla] != -1 &&
+       [currentModelSensorSet getTesla] != 9000 &&
        [self compareWithTolerance:                     [currentModelSensorSet getTesla]:                             teslaArray[CurrentFrameNum] :TOLERANCE]==1){
         CurrentFrameNum++;
         NSLog(@"Bingo!");
         
     }
-    else if([currentModelSensorSet getAccelY] != -1 &&
-       [self compareWithTolerance:
-        [currentModelSensorSet getAccelY]:
-        [currentVaprSensorSet getAccelY]:
-                                  TOLERANCE
-        ]==1){
-           //CurrentFrameNum++;
-       }
+    else if(
+       [currentModelSensorSet getAccelZ] != 9000 &&
+       [self compareWithTolerance:                     [currentModelSensorSet getTesla]:                             accelzArray[CurrentFrameNum] :TOLERANCE]==1){
+        CurrentFrameNum++;
+        NSLog(@"Bingo!");
+        
+    }
     return CurrentFrameNum;
         
         
