@@ -15,7 +15,7 @@ NSTimer* timer;
 NSMutableArray* fakeSensorSetArray;
 int CurrentFrameNum=0;
 Vapr* VaprInUse;
-int teslaArray[] = {0,10,20,35,40,50,60,70,80,95,105,115,125,135,145,155,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,160,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,360};
+int teslaArray[] = {0,10,20,35,40,50,60,70,80,95,105,115,125,135,145,155,160,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,160,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,360};
 int accelzArray[] ={9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,476,470,462,456,450,442,444,450,458,464,470,478,484,488,494,500,504,510,516,520,526,536,542,548,552,558,558,550,542,534,526,520,512,504,496,488,480,474,466,458,450,442,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000};
 - (id)init{
     self = [super init];
@@ -54,6 +54,7 @@ int accelzArray[] ={9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,
     [currentModelSensorSet printRaw];
     printf("entry: %u Tesla: %u, Z: %u\n",CurrentFrameNum,teslaArray[CurrentFrameNum],accelzArray[CurrentFrameNum]);
     //compare with tolerance each sensor
+    
     if(
        [currentModelSensorSet getTesla] != 9000 &&
        [self compareWithTolerance:                     [currentModelSensorSet getTesla]:                             teslaArray[CurrentFrameNum] :TOLERANCE]==1){
@@ -61,9 +62,9 @@ int accelzArray[] ={9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,9000,
         NSLog(@"Bingo!");
         
     }
-    else if(
+    if(
        [currentModelSensorSet getAccelZ] != 9000 &&
-       [self compareWithTolerance:                     [currentModelSensorSet getTesla]:                             accelzArray[CurrentFrameNum] :TOLERANCE]==1){
+       [self compareWithTolerance:                     [currentModelSensorSet getAccelZ]:                             accelzArray[CurrentFrameNum] :5]==1){
         CurrentFrameNum++;
         NSLog(@"Bingo!");
         

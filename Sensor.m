@@ -128,7 +128,7 @@ int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,t
 }
 
 - (sensorSet*)getSensorSet{
-    [currentSet printRaw];
+    //[currentSet printRaw];
     //NSLog(@"currentSet gyro is %u",[currentSet getGyroX]);
     sensorSet* toReturn = [[sensorSet alloc] init];
     [toReturn setGyroX:(gyroxNormal)];
@@ -139,7 +139,7 @@ int accelxNormal,accelyNormal,accelzNormal,gyroxNormal,gyroyNormal,gyrozNormal,t
     [toReturn setAccelZ:(accelzNormal)];
     [toReturn setTesla:teslaNormal];
     [toReturn printRaw];
-        return currentSet;
+    return currentSet;
 }
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
